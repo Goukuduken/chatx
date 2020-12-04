@@ -1,0 +1,26 @@
+{
+  "name": "chatx",
+  "version": "1.0.0",
+  "description": "My cool Nuxt.js project",
+  "author": "Timofey Plotnikov",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "nuxt": "^2.0.0",
+    "socket.io": "^3.0.3",
+    "socket.io-client": "^3.0.3",
+    "vue-socket.io": "^3.0.5",
+    "vue-socket.io-extended": "^4.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
