@@ -1,32 +1,71 @@
 <template>
-  <v-app app>
-    <nuxt />
-  </v-app>
+  <v-app app dark>
+  <v-navigation-drawer app v-model="drawer"> 
+     <v-list subheader>
+      <v-subheader>Recent chat</v-subheader>
+
+      <v-list-item
+        v-for="u in users"
+        :key="u.id"
+        @click.prevent
+      >
+        <!-- <v-list-item-avatar>
+          <v-img
+            :alt="`${chat.title} avatar`"
+            :src="chat.avatar"
+          ></v-img>
+        </v-list-item-avatar> -->
+
+        <v-list-item-content>
+          <v-list-item-title v-text="u.name"></v-list-item-title>
+        </v-list-item-content>
+
+        <v-list-item-icon>
+          <v-icon :color="u.id == 2 ? 'primary' : 'grey'">
+            mdi-message-outline
+          </v-icon>
+        </v-list-item-icon>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+
+  <v-app-bar app>
+     <v-app-bar-nav-icon medium @click="drawer = !drawer"></v-app-bar-nav-icon>
+     <v-btn icon @click="exit">
+       <v-icon>
+          mdi-arrow-left
+        </v-icon>
+     </v-btn>
+     <dir><h3> Chat room {{user.room}}</h3></dir>
+  </v-app-bar>
+  <!-- Sizes your content based upon application components -->
+  <v-main>
+    <div style="height: 100%">
+      <nuxt/>
+    </div>
+  </v-main>
+</v-app>
 </template>
 
 <script>
+import {mapState, mapMutations} from 'vuex'
+
 export default {
-  data () {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+  computed: mapState(['user']), 
+  data: () => ({
+    drawer: true, 
+    users: [{
+      id: 1, name: 'User 1'
+    }, 
+    {
+      id: 2, name: 'User 2'
+    }]
+  }),
+  methods: {
+    ...mapMutations(['clearData']),
+    exit() {
+      this.$router.push('/?message=leavedChat');
+      this.clearData();
     }
   }
 }
