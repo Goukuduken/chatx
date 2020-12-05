@@ -7,6 +7,7 @@
            <ChatForm/>
        </div>
     </div>
+    
 </template>
 
 <script>
@@ -33,23 +34,22 @@ export default {
         position: relative;
         overflow: hidden;
     }
-    .c-form {
+    .c-chat {
         position: absolute;
-        top: 10px;
+        top: 0;
         left: 0;
         right: 0;
         padding: 1rem;
-        bottom: 10px;
+        bottom: 90px;
         overflow-y: auto;
     }
-    .c-chat {
+    .c-form {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         padding: 1rem;
-        height: 800px;
+        height: 100px;
         background: #212121;
-    }
-   
+    }  
 </style>
